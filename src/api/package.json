@@ -1,0 +1,18 @@
+{
+  "name": "beta-api",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": {
+    "url": "roll-player/beta",
+    "type": "git"
+  },
+  "author": "Michael Sarchet",
+  "license": "MIT",
+  "dependencies": {
+    "boom": "^4.2.0",
+    "dice-engine": "roll-player/dice-engine",
+    "fuse.js": "^2.5.0",
+    "hapi": "^15.2.0",
+    "spell-finder": "roll-player/spell-finder"
+  }
+}

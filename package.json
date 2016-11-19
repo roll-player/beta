@@ -1,0 +1,12 @@
+{
+  "name": "roll-player-beta",
+  "version": "0.1.0",
+  "description": "Beta",
+  "main": "main.js",
+  "repository": {
+    "url": "roll-player/beta",
+    "type": "git"
+  },
+  "author": "mikesarchet@gmail.com",
+  "license": "MIT"
+}

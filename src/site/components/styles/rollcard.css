@@ -1,0 +1,37 @@
+.roll--die {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.roll--die-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+}
+
+.roll--die-valid {
+  composes: roll--die;
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 2px;
+  justify-content: space-around;
+  align-items: center;
+  margin: 2px;
+}
+
+.roll--die-operator {
+  composes: roll--die;
+  content: ''
+}
+
+.roll--die-operator-roll {
+  composes: roll--die-operator;
+  width: 20px;
+}
+
+.roll--die-invalid {
+  composes: roll--die-valid;
+  text-decoration: line-through;
+}

@@ -1,0 +1,27 @@
+.roll--container {
+  display: flex;
+  flex-direction: column;
+}
+
+.roll--input {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: space-around;
+}
+
+.roll--centered {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.roll--label {
+  font-size: 2em;
+}
+
+.roll--label:first-child {
+  margin-right: 2em;
+  display: inline-block;
+}
