@@ -34,6 +34,7 @@ const mappedSpells = Object.keys(knownSpells).map(name => {
 })
 
 const fuseOptions = {
+  caseSensitive: false,
   keys: ['name', 'description'],
   include: ['score'],
   threshold: 0.2
@@ -82,6 +83,10 @@ server.route({
     })
   }
 })
+
+server.on('request-internal', (request, event, tags) => {
+  console.log(request)
+});
 
 server.start(err => {
   if (err) {

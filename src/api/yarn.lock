@@ -42,6 +42,10 @@ boom@3.x.x:
   dependencies:
     hoek "4.x.x"
 
+buffer-shims@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/buffer-shims/-/buffer-shims-1.0.0.tgz#9978ce317388c649ad8793028c3477ef044a8b51"
+
 call@3.x.x:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/call/-/call-3.0.3.tgz#e4748ddbbb7f41ae40cee055f8b270b733bf7c8d"
@@ -123,6 +127,27 @@ dice-engine@roll-player/dice-engine:
   dependencies:
     random-js "^1.0.8"
 
+duplexify@^3.1.2:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/duplexify/-/duplexify-3.5.0.tgz#1aa773002e1578457e9d9d4a50b0ccaaebcbd604"
+  dependencies:
+    end-of-stream "1.0.0"
+    inherits "^2.0.1"
+    readable-stream "^2.0.0"
+    stream-shift "^1.0.0"
+
+end-of-stream@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/end-of-stream/-/end-of-stream-1.1.0.tgz#e9353258baa9108965efc41cb0ef8ade2f3cfb07"
+  dependencies:
+    once "~1.3.0"
+
+end-of-stream@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/end-of-stream/-/end-of-stream-1.0.0.tgz#d4596e702734a93e40e9af864319eabd99ff2f0e"
+  dependencies:
+    once "~1.3.0"
+
 escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
@@ -153,6 +178,15 @@ figures@^1.3.5:
 fuse.js, fuse.js@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-2.5.0.tgz#98295c2ac1684edbba22250d7049cb6f033e95ce"
+
+good:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/good/-/good-7.1.0.tgz#9e05ad24c58a11b71cf5081700f3778db0b22c1c"
+  dependencies:
+    hoek "4.x.x"
+    joi "10.x.x"
+    oppsy "1.x.x"
+    pumpify "1.3.x"
 
 hapi@^15.2.0:
   version "15.2.0"
@@ -195,7 +229,7 @@ hoek@4.x.x:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-4.1.0.tgz#4a4557460f69842ed463aa00628cc26d2683afa7"
 
-inherits@~2.0.1:
+inherits@^2.0.1, inherits@~2.0.1:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
 
@@ -247,6 +281,15 @@ isemail@2.x.x:
 items@2.x.x:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/items/-/items-2.1.1.tgz#8bd16d9c83b19529de5aea321acaada78364a198"
+
+joi@10.x.x:
+  version "10.0.5"
+  resolved "https://registry.yarnpkg.com/joi/-/joi-10.0.5.tgz#2e43af9bf24d2d5745852e9ab968c85be357bd6a"
+  dependencies:
+    hoek "4.x.x"
+    isemail "2.x.x"
+    items "2.x.x"
+    topo "2.x.x"
 
 joi@9.x.x:
   version "9.2.0"
@@ -300,9 +343,28 @@ object-assign@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.0.tgz#7a3b3d0e98063d43f4c03f2e8ae6cd51a86883a0"
 
+once@^1.3.1:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/once/-/once-1.4.0.tgz#583b1aa775961d4b113ac17d9c50baef9dd76bd1"
+  dependencies:
+    wrappy "1"
+
+once@~1.3.0:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/once/-/once-1.3.3.tgz#b2e261557ce4c314ec8304f3fa82663e4297ca20"
+  dependencies:
+    wrappy "1"
+
 onetime@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/onetime/-/onetime-1.1.0.tgz#a1f7838f8314c516f05ecefcbc4ccfe04b4ed789"
+
+oppsy@1.x.x:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/oppsy/-/oppsy-1.0.2.tgz#98014cd6967653a83cfffa554226dc90050baad4"
+  dependencies:
+    hoek "4.x.x"
+    items "2.x.x"
 
 os-shim@^0.1.2:
   version "0.1.3"
@@ -344,9 +406,36 @@ process-nextick-args@~1.0.6:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-1.0.7.tgz#150e20b756590ad3f91093f25a4f2ad8bff30ba3"
 
+pump@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/pump/-/pump-1.0.1.tgz#f1f1409fb9bd1085bbdb576b43b84ec4b5eadc1a"
+  dependencies:
+    end-of-stream "^1.1.0"
+    once "^1.3.1"
+
+pumpify@1.3.x:
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/pumpify/-/pumpify-1.3.5.tgz#1b671c619940abcaeac0ad0e3a3c164be760993b"
+  dependencies:
+    duplexify "^3.1.2"
+    inherits "^2.0.1"
+    pump "^1.0.0"
+
 random-js@^1.0.8:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/random-js/-/random-js-1.0.8.tgz#968fd689a6f25d6c0aac766283de2f688c9c190a"
+
+readable-stream@^2.0.0:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.2.2.tgz#a9e6fec3c7dda85f8bb1b3ba7028604556fc825e"
+  dependencies:
+    buffer-shims "^1.0.0"
+    core-util-is "~1.0.0"
+    inherits "~2.0.1"
+    isarray "~1.0.0"
+    process-nextick-args "~1.0.6"
+    string_decoder "~0.10.x"
+    util-deprecate "~1.0.1"
 
 readable-stream@~2.0.0:
   version "2.0.6"
@@ -411,6 +500,10 @@ statehood@5.x.x:
     items "2.x.x"
     joi "9.x.x"
 
+stream-shift@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/stream-shift/-/stream-shift-1.0.0.tgz#d5c752825e5367e786f78e18e445ea223a155952"
+
 string_decoder@~0.10.x:
   version "0.10.31"
   resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
@@ -472,6 +565,10 @@ vise@2.x.x:
   resolved "https://registry.yarnpkg.com/vise/-/vise-2.0.2.tgz#6b08e8fb4cb76e3a50cd6dd0ec37338e811a0d39"
   dependencies:
     hoek "4.x.x"
+
+wrappy@1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
 
 wreck@10.x.x:
   version "10.0.0"

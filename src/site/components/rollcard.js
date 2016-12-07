@@ -16,7 +16,7 @@ class RollCard extends React.Component {
   }
 
   getRoll () {
-    fetch(`http://localhost:8080/roll/${this.state.id}`, {
+    fetch(`/api/roll/${this.state.id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

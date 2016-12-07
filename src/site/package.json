@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "node ./node_modules/reactpack/cli.js ./index.js --dev --watch",
     "test": "node ./node_modules/standard/bin/cmd.js __tests__/**/*.js && node ./node_modules/jest-cli/bin/jest.js",
-    "prod": "node ./node_modules/reactpack/cli ./index.js",
-    "css": "lessc ./node_modules/elemental/less/elemental.less dist/elemental.min.css",
+    "prod": "node ./node_modules/reactpack/cli ./index.js --absolute-path",
+    "css": "lessc ./node_modules/elemental/less/elemental.less dist/elemental.min",
     "build": "npm run css && npm run prod"
   },
   "repository": {
@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "elemental": "^0.6.1",
+    "less": "^2.7.1",
     "node-uuid": "^1.4.7",
     "react": "^15.1.0",
     "react-addons-css-transition-group": "^15.3.2",
