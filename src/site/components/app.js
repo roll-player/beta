@@ -1,6 +1,7 @@
 import React from 'react'
 import { Router, Route, browserHistory } from 'react-router'
 import CSSModules from 'react-css-modules'
+import { Row, Col } from 'elemental'
 
 import Header from './header'
 import styles from './styles/app.css'
@@ -8,12 +9,14 @@ import Roll from './roll'
 import SpellSearch from './spellSearch'
 import Spell from './spell'
 import About from './about'
+import Welcome from './welcome'
 
 const Root = props => {    
   if (!props.children) {
     return (
       <div style={ {padding: '10px' }}>
         <Header /> 
+        <Welcome />
         <Roll {...props} />
         <SpellSearch {...props} />
       </div>
