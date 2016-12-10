@@ -7,7 +7,7 @@ import styles from './styles/welcome.css'
 
 const Welcome = () => (
   <Row styleName='welcome--container'>
-    <Col sm='1' styleName='welcome--message'>
+    <Col sm='10/12'>
       <h1>Welcome to Roll Player!</h1>
       <p>Try out the dice roller or the spell finder</p>
       <p>Follow us on twitter <a href="https://twitter.com/rollplayerapp">@rollplayerapp</a> for updates and news!</p>

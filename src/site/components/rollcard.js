@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Row, Col, Button } from 'elemental'
+import { Card, Row, Col, Button, Glyph } from 'elemental'
 import 'whatwg-fetch'
 
 import CSSModules from 'react-css-modules'
@@ -96,14 +96,16 @@ class RollCard extends React.Component {
   render () {
     let value = this.state.dice.value || '...'
     let expanded = this.renderExpandedDice()
+    let glyph = this.state.expanded ? 'triangle-up' : 'triangle-down'
+
     return (
       <Card>
-        <Row>
+        <Row styleName='roll--die-top'>
           <Col sm='10/12'>
             {this.state.roll} -> { this.state.dice.value }
           </Col>
-          <Col sm='2/12'>
-            <Button type='hollow-primary' onClick={this.toggleExpand.bind(this)}>+</Button>
+          <Col sm='2/12' styleName='roll--die-right'>
+            <Button type='hollow-primary' onClick={this.toggleExpand.bind(this)}><Glyph icon={ glyph } /></Button>
           </Col>
           </Row>
           <Row>

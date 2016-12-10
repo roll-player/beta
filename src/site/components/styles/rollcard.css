@@ -50,3 +50,12 @@
   color: green;
 }
 
+
+.roll--die-top {
+  margin-bottom: 10px;
+}
+
+.roll--die-right {
+  display: flex;
+  justify-content: flex-end;
+}
