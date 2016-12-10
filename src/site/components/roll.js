@@ -24,6 +24,9 @@ class Roll extends React.Component {
 
   render() {
     let rolls = this.state.rolls.map(roll => {
+      if (!roll.id) {
+        roll.id = v4()
+      }
       return (
         <Row key={roll.id}>
           <Col>

@@ -33,5 +33,20 @@
 
 .roll--die-invalid {
   composes: roll--die-valid;
-  text-decoration: line-through;
+  opacity: 0.5;
+  color: red;
+  background-color: rgba(128, 0, 0, .2);
+  border-color: red;
 }
+
+.roll--die-valid--crit {
+  composes: roll--die-valid;
+  color: green;
+  border-color: green;
+  background-color: rgba(0, 128, 0, .2);
+}
+.roll--die-invalid--crit {
+  composes: roll--die-invalid;
+  color: green;
+}
+

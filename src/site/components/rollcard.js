@@ -36,33 +36,54 @@ class RollCard extends React.Component {
   }
 
   renderDie (roll) {
+    let rendered = null 
+    if (roll.left) {
+      rendered = this.renderDie(roll.left)
+    }
+
     if (roll.type === 'dice') {
-      let dice = roll.rolledDice.map((dice, index) => (
-        <div key={index} styleName='roll--die'>
-          <span styleName={dice.__invalid__ ? 'roll--die-invalid' : 'roll--die-valid'}>{dice.__value__}</span>
-          <span styleName='roll--die-operator'>{index != roll.number - 1 ? '+' : ''}</span>
-        </div>
-      ))
+      let dice = roll.rolledDice.map((die, index) => {
+        let dieClass = die.__invalid__ ? 'roll--die-invalid' : 'roll--die-valid'
+
+        if (die.__value__.toString() === die.__sides__) {
+          dieClass += '--crit'
+        }
+
+        return (<div key={index} styleName='roll--die'>
+          <span styleName={dieClass}>{die.__value__}</span>
+        </div>)
+      })
 
       let internal = [(<div>{roll.number}d{roll.sides}{roll.rightString}</div>), dice]
 
       return (
-        <div styleName='roll--die'>
-          {internal}
-        </div>
+        <Row styleName='roll--die'>
+          <Col>
+            <Card>
+              <Row>
+                  {rendered}
+              </Row>
+              <Row>
+                  {internal}
+              </Row>
+            </Card>
+          </Col>
+        </Row>
       )
     } else if(roll.__values__) {
-
       return roll.__values__.map(pair => {
         return (
-          <div styleName='roll--die'>
-            <span styleName='roll--die-operator-roll'>{pair.operation}</span>
-            {this.renderDie(pair.value)}
-          </div>
+          <Row styleName='roll--die'>
+            <Col>
+              <span styleName='roll--die-operator-roll'>{pair.operation}</span>
+              {this.renderDie(pair.value)}
+            </Col>
+          </Row>
         )
       })
     } else {
-      return (<div>{roll.value}</div>)
+      console.log(roll)
+      return (<Row><Col>{rendered}{roll.value}</Col></Row>)
     }
   }
 
@@ -78,18 +99,18 @@ class RollCard extends React.Component {
     return (
       <Card>
         <Row>
-        <Col sm='11/12'>
-          {this.state.roll} -> { this.state.dice.value }
-        </Col>
-        <Col sm='1/12'>
-          <Button onClick={this.toggleExpand.bind(this)}>+</Button>
-        </Col>
-        </Row>
-        <Row>
-          <Col styleName='roll--die-container'>
-            {expanded}
+          <Col sm='10/12'>
+            {this.state.roll} -> { this.state.dice.value }
           </Col>
-        </Row>
+          <Col sm='2/12'>
+            <Button type='hollow-primary' onClick={this.toggleExpand.bind(this)}>+</Button>
+          </Col>
+          </Row>
+          <Row>
+            <Col styleName='roll--die-container'>
+              {expanded}
+            </Col>
+          </Row>
       </Card>
     )
   }

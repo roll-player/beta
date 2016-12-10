@@ -20,7 +20,9 @@ class Header extends React.Component {
           <div styleName='header--header-navitem'>
             <Link to='/spells'>Spells</Link>
           </div>
-          <div styleName='header--header-navitem'>About</div>
+          <div styleName='header--header-navitem'>
+            <Link to='/about'>About</Link>
+          </div>
         </Col>
         <Col sm='1/6'/>
       </Row>

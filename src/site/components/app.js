@@ -10,6 +10,16 @@ import Spell from './spell'
 import About from './about'
 
 const Root = props => {    
+  if (!props.children) {
+    return (
+      <div style={ {padding: '10px' }}>
+        <Header /> 
+        <Roll {...props} />
+        <SpellSearch {...props} />
+      </div>
+    )
+  }
+
   return (
     <div style={ {padding: '10px' }}>
       <Header /> 
@@ -23,9 +33,9 @@ class App extends React.Component {
     return (
       <Router history={ browserHistory }>
         <Route path='/' component={ Root }>
-          <Route path='roll' component={ Roll } />
-          <Route path='spells' component = { SpellSearch }>
-            <Route path='spell/:query' component = { Spell } />
+          <Route path='/roll' component={ Roll } />
+          <Route path='/spells' component = { SpellSearch }>
+            <Route path='/spell/:query' component = { Spell } />
           </Route>
           <Route path='about' component={ About }/>
         </Route>

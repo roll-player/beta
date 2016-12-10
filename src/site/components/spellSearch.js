@@ -11,6 +11,7 @@ class SpellSearch extends React.Component {
 
     this.state = { query: '', results: [] }
   }
+
   onSubmit (e) {
     e.preventDefault()
     this.props.router.push(`/spell/${this.state.query}`)

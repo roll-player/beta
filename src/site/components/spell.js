@@ -19,16 +19,12 @@ class Spell extends React.Component {
   constructor(props){
     super(props)
 
-    this.state = { query: this.props.params.query, spells: []}
-    this.querySpell()
+    this.state = { spells: []}
+    this.querySpell(this.props.params.query)
   }
 
   componentWillReceiveProps(nextProps) {
-    if(this.state.query !== nextProps.params.query) {
-      console.log('new query', nextProps.params.query)
-      this.setState({ query : nextProps.params.query })
-      this.querySpell(nextProps.params.query)
-    }
+    this.querySpell(nextProps.params.query)
   }
 
   querySpell(spellname) {
