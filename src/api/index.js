@@ -27,6 +27,7 @@ server.method('roll', roll, {
 })
 
 const knownSpells = require('./data/spells.json')
+
 const mappedSpells = Object.keys(knownSpells).map(name => { 
   let spell = knownSpells[name]
   spell.name = name
@@ -57,7 +58,6 @@ server.route({
   handler: (request, reply) => {
     server.methods.roll(request.params.id, request.payload.diceString, (err, result) => {
       if (err) {
-        console.log(err)
         return reply(Boom.badRequest('Bad input'))
       }
 
@@ -83,10 +83,6 @@ server.route({
     })
   }
 })
-
-server.on('request-internal', (request, event, tags) => {
-  console.log(request)
-});
 
 server.start(err => {
   if (err) {

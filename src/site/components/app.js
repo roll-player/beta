@@ -7,6 +7,7 @@ import styles from './styles/app.css'
 import Roll from './roll'
 import SpellSearch from './spellSearch'
 import Spell from './spell'
+import About from './about'
 
 const Root = props => {    
   return (
@@ -24,8 +25,9 @@ class App extends React.Component {
         <Route path='/' component={ Root }>
           <Route path='roll' component={ Roll } />
           <Route path='spells' component = { SpellSearch }>
-            <Route path='/spell/:query' component = { Spell } />
+            <Route path='spell/:query' component = { Spell } />
           </Route>
+          <Route path='about' component={ About }/>
         </Route>
       </Router>
     )
