@@ -15,7 +15,7 @@
 
 .header--header-logo {
   composes: header--header-navItemBase;
-  fontSize: 2em;
+  font-size: 2em;
 }
 
 .header--header-nav {
