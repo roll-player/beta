@@ -11,9 +11,9 @@ class Header extends React.Component {
       <div styleName='nav--container'>
         <Row styleName='header--header-row'>
           <Col sm='1/6'>
-              <div styleName='header--header-logo'>
-                <Link to='/'>Roll Player</Link>
-              </div>
+            <div styleName='header--header-logo'>
+              <Link to='/'>Roll Player</Link>
+            </div>
           </Col>
           <Col sm='2/3' styleName='header--header-nav'>
             <div styleName='header--header-navitem'>

@@ -19,7 +19,7 @@ class Spell extends React.Component {
   constructor(props){
     super(props)
 
-    this.state = { spells: []}
+    this.state = { spells: [], fetching: true }
     this.querySpell(this.props.params.query)
   }
 
@@ -31,12 +31,25 @@ class Spell extends React.Component {
     fetch(`/api/spell/${spellname}`)
       .then(result => result.json())
       .then(spells => {
-        console.log(spells)
         this.setState({ spells })
+      })
+      .catch(err => {
+        console.error(err)
+      })
+      .then(_ => {
+        this.setState({fetching: false })
       })
   }
 
   render() {
+    if (this.state.fetching) {
+      return (<div>Consulting the spell books</div>)
+    }
+
+    if (this.state.spells.length === 0) {
+      return (<div>No spells matching that Query</div>) 
+    }
+
     let rendered = this.state.spells.map(result => {
       let spell = result.item
       return (<Row>
@@ -70,9 +83,6 @@ class Spell extends React.Component {
       </Row>)
     })
 
-    if (rendered.length == 0) {
-      rendered = (<div>No spells matching that Query</div>) 
-    }
     return (
       <div>
         {rendered} 
