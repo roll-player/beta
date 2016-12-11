@@ -2,6 +2,7 @@ import React from 'react'
 import CSSModules from 'react-css-modules'
 import styles from './styles/spell.css'
 import { Row, Col, Card } from 'elemental'
+
 const spellLevelNames = [
   'Cantrip',
   '1st',
@@ -16,18 +17,18 @@ const spellLevelNames = [
 ]
 
 class Spell extends React.Component {
-  constructor(props){
+  constructor (props) {
     super(props)
 
     this.state = { spells: [], fetching: true }
     this.querySpell(this.props.params.query)
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     this.querySpell(nextProps.params.query)
   }
 
-  querySpell(spellname) {
+  querySpell (spellname) {
     fetch(`/api/spell/${spellname}`)
       .then(result => result.json())
       .then(spells => {
@@ -37,23 +38,23 @@ class Spell extends React.Component {
         console.error(err)
       })
       .then(_ => {
-        this.setState({fetching: false })
+        this.setState({fetching: false})
       })
   }
 
-  render() {
+  render () {
     if (this.state.fetching) {
       return (<div>Consulting the spell books</div>)
     }
 
     if (this.state.spells.length === 0) {
-      return (<div>No spells matching that Query</div>) 
+      return (<div>No spells matching that Query</div>)
     }
 
     let rendered = this.state.spells.map(result => {
       let spell = result.item
       return (<Row>
-        <Col sm='1/8'/>
+        <Col sm='1/8' />
         <Col sm='3/4'>
           <Card styleName='spell--card'>
             <div styleName='spell--name'>
@@ -79,15 +80,15 @@ class Spell extends React.Component {
             </div>
           </Card>
         </Col>
-        <Col sm='1/8'/>
+        <Col sm='1/8' />
       </Row>)
     })
 
     return (
       <div>
-        {rendered} 
+        {rendered}
       </div>
-    ) 
+    )
   }
 
 }

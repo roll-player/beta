@@ -32,11 +32,11 @@ class RollCard extends React.Component {
   }
 
   toggleExpand () {
-    this.setState({expanded: !this.state.expanded })  
+    this.setState({expanded: !this.state.expanded})
   }
 
   renderDie (roll) {
-    let rendered = null 
+    let rendered = null
     if (roll.left) {
       rendered = this.renderDie(roll.left)
     }
@@ -61,16 +61,16 @@ class RollCard extends React.Component {
           <Col>
             <Card>
               <Row>
-                  {rendered}
+                {rendered}
               </Row>
               <Row>
-                  {internal}
+                {internal}
               </Row>
             </Card>
           </Col>
         </Row>
       )
-    } else if(roll.__values__) {
+    } else if (roll.__values__) {
       return roll.__values__.map(pair => {
         return (
           <Row styleName='roll--die'>
@@ -87,14 +87,14 @@ class RollCard extends React.Component {
     }
   }
 
-  renderExpandedDice() {
+  renderExpandedDice () {
     if (this.state.expanded) {
       return this.renderDie(this.state.dice.roll)
     }
   }
 
   render () {
-    let value = this.state.dice.value || '...'
+    let value = this.state.dice.value || 'rolling the dice'
     let expanded = this.renderExpandedDice()
     let glyph = this.state.expanded ? 'triangle-up' : 'triangle-down'
 
@@ -102,17 +102,17 @@ class RollCard extends React.Component {
       <Card>
         <Row styleName='roll--die-top'>
           <Col sm='10/12'>
-            {this.state.roll} -> { this.state.dice.value }
+            {this.state.roll} -> {value}
           </Col>
           <Col sm='2/12' styleName='roll--die-right'>
-            <Button type='hollow-primary' onClick={this.toggleExpand.bind(this)}><Glyph icon={ glyph } /></Button>
+            <Button type='hollow-primary' onClick={this.toggleExpand.bind(this)}><Glyph icon={glyph} /></Button>
           </Col>
-          </Row>
-          <Row>
-            <Col styleName='roll--die-container'>
-              {expanded}
-            </Col>
-          </Row>
+        </Row>
+        <Row>
+          <Col styleName='roll--die-container'>
+            {expanded}
+          </Col>
+        </Row>
       </Card>
     )
   }

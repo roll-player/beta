@@ -8,7 +8,7 @@ import RollCard from './rollcard'
 
 class Roll extends React.Component {
   constructor (props) {
-    super(props) 
+    super(props)
 
     this.state = { roll: '', rolls: [] }
   }
@@ -19,10 +19,10 @@ class Roll extends React.Component {
   }
 
   handleChange (e) {
-    this.setState({roll: e.target.value })
+    this.setState({roll: e.target.value})
   }
 
-  render() {
+  render () {
     let rolls = this.state.rolls.map(roll => {
       if (!roll.id) {
         roll.id = v4()
@@ -37,16 +37,16 @@ class Roll extends React.Component {
     })
     return (
       <div styleName='roll--container'>
-          <Row styleName='roll--input'>
-            <Col styleName='roll--centered'>
-              <Form type='inline' onSubmit={this.onSubmit.bind(this)}>
-                <FormField label='Roll' htmlFor='roll-form-input-roll'>
-                  <FormInput placeholder='d20' name='roll-form-input-roll' value={this.state.roll} onChange={this.handleChange.bind(this)} />
-                </FormField>
-              </Form>
-            </Col>
-          </Row>
-          { rolls }
+        <Row styleName='roll--input'>
+          <Col styleName='roll--centered'>
+            <Form type='inline' onSubmit={this.onSubmit.bind(this)}>
+              <FormField label='Roll' htmlFor='roll-form-input-roll'>
+                <FormInput placeholder='d20' name='roll-form-input-roll' value={this.state.roll} onChange={this.handleChange.bind(this)} />
+              </FormField>
+            </Form>
+          </Col>
+        </Row>
+        {rolls}
       </div>
     )
   }

@@ -26,7 +26,7 @@ class Header extends React.Component {
               <Link to='/about'>About</Link>
             </div>
           </Col>
-          <Col sm='1/6'/>
+          <Col sm='1/6' />
         </Row>
       </div>
     )

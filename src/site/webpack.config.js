@@ -1,7 +1,7 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
-  module : {
+  module: {
     loaders: [
       {
         test: /\.css$/,

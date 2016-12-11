@@ -1,7 +1,6 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
-import { v4 } from 'node-uuid'
-import { Row, Col, Card, Form, FormField, FormInput } from 'elemental'
+import { Row, Col, Form, FormField, FormInput } from 'elemental'
 
 import styles from './styles/spellSearch.css'
 
@@ -22,7 +21,7 @@ class SpellSearch extends React.Component {
     this.setState({query: e.target.value})
   }
 
-  render() {
+  render () {
     return (<div styleName='search--container'>
       <Row styleName='search--input'>
         <Col>
@@ -32,7 +31,7 @@ class SpellSearch extends React.Component {
             </FormField>
           </Form>
         </Col>
-      </Row>    
+      </Row>
       {this.props.children}
     </div>)
   }

@@ -64,7 +64,8 @@
       "it",
       "expect",
       "beforeEach",
-      "afterEach"
+      "afterEach",
+      "fetch"
     ]
   }
 }

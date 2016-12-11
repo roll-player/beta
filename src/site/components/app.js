@@ -1,7 +1,6 @@
 import React from 'react'
 import { Router, Route, browserHistory } from 'react-router'
 import CSSModules from 'react-css-modules'
-import { Row, Col } from 'elemental'
 
 import Header from './header'
 import styles from './styles/app.css'
@@ -11,11 +10,11 @@ import Spell from './spell'
 import About from './about'
 import Welcome from './welcome'
 
-const Root = props => {    
+const Root = props => {
   if (!props.children) {
     return (
-      <div style={ {padding: '10px' }}>
-        <Header /> 
+      <div style={{padding: '10px'}}>
+        <Header />
         <Welcome />
         <Roll {...props} />
         <SpellSearch {...props} />
@@ -24,9 +23,9 @@ const Root = props => {
   }
 
   return (
-    <div style={ {padding: '10px' }}>
-      <Header /> 
-      { props.children }
+    <div style={{padding: '10px'}}>
+      <Header />
+      {props.children}
     </div>
   )
 }
@@ -34,13 +33,13 @@ const Root = props => {
 class App extends React.Component {
   render () {
     return (
-      <Router history={ browserHistory }>
-        <Route path='/' component={ Root }>
-          <Route path='/roll' component={ Roll } />
-          <Route path='/spells' component = { SpellSearch }>
-            <Route path='/spell/:query' component = { Spell } />
+      <Router history={browserHistory}>
+        <Route path='/' component={Root}>
+          <Route path='/roll' component={Roll} />
+          <Route path='/spells' component={SpellSearch}>
+            <Route path='/spell/:query' component={Spell} />
           </Route>
-          <Route path='about' component={ About }/>
+          <Route path='about' component={About} />
         </Route>
       </Router>
     )
