@@ -17,9 +17,6 @@ class Header extends React.Component {
           </Col>
           <Col sm='2/3' styleName='header--header-nav'>
             <div styleName='header--header-navitem'>
-              <Link to='/roll'>Roll Dice</Link>
-            </div>
-            <div styleName='header--header-navitem'>
               <Link to='/spells'>Spells</Link>
             </div>
             <div styleName='header--header-navitem'>

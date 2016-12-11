@@ -4,7 +4,6 @@ import CSSModules from 'react-css-modules'
 
 import Header from './header'
 import styles from './styles/app.css'
-import Roll from './roll'
 import SpellSearch from './spellSearch'
 import Spell from './spell'
 import About from './about'
@@ -16,7 +15,6 @@ const Root = props => {
       <div style={{padding: '10px'}}>
         <Header />
         <Welcome />
-        <Roll {...props} />
         <SpellSearch {...props} />
       </div>
     )
@@ -35,7 +33,6 @@ class App extends React.Component {
     return (
       <Router history={browserHistory}>
         <Route path='/' component={Root}>
-          <Route path='/roll' component={Roll} />
           <Route path='/spells' component={SpellSearch}>
             <Route path='/spell/:query' component={Spell} />
           </Route>
