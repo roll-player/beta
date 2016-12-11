@@ -58,6 +58,7 @@ server.route({
   handler: (request, reply) => {
     server.methods.roll(request.params.id, request.payload.diceString, (err, result) => {
       if (err) {
+        console.log(err)
         return reply(Boom.badRequest('Bad input'))
       }
 
@@ -83,6 +84,8 @@ server.route({
     })
   }
 })
+
+// server.on('request-internal', request => console.log(request))
 
 server.start(err => {
   if (err) {

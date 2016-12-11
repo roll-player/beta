@@ -8,10 +8,10 @@ accept@2.x.x:
     hoek "4.x.x"
 
 ammo@2.x.x:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/ammo/-/ammo-2.0.2.tgz#366c55f7bc4f2f24218ed3a4dd4b8df135c2e6ca"
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/ammo/-/ammo-2.0.3.tgz#914bbcf65b043ed0f58a8a9d0196e250ec51e6a7"
   dependencies:
-    boom "3.x.x"
+    boom "4.x.x"
     hoek "4.x.x"
 
 ansi-escapes@^1.1.0:
@@ -36,21 +36,15 @@ boom@^4.2.0, boom@4.x.x:
   dependencies:
     hoek "4.x.x"
 
-boom@3.x.x:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/boom/-/boom-3.2.2.tgz#0f0cc5d04adc5003b8c7d71f42cca7271fef0e78"
-  dependencies:
-    hoek "4.x.x"
-
 buffer-shims@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/buffer-shims/-/buffer-shims-1.0.0.tgz#9978ce317388c649ad8793028c3477ef044a8b51"
 
 call@3.x.x:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/call/-/call-3.0.3.tgz#e4748ddbbb7f41ae40cee055f8b270b733bf7c8d"
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/call/-/call-3.0.4.tgz#e380f2f2a491330aa79085355f8be080877d559e"
   dependencies:
-    boom "3.x.x"
+    boom "4.x.x"
     hoek "4.x.x"
 
 catbox-memory@2.x.x:
@@ -60,12 +54,12 @@ catbox-memory@2.x.x:
     hoek "4.x.x"
 
 catbox@7.x.x:
-  version "7.1.2"
-  resolved "https://registry.yarnpkg.com/catbox/-/catbox-7.1.2.tgz#46721b1c99967513fd7b7e9451706a05edfed5ad"
+  version "7.1.3"
+  resolved "https://registry.yarnpkg.com/catbox/-/catbox-7.1.3.tgz#9817edec5a921743282addfc9c45ace52847eebb"
   dependencies:
-    boom "3.x.x"
+    boom "4.x.x"
     hoek "4.x.x"
-    joi "9.x.x"
+    joi "10.x.x"
 
 chalk@^1.0.0, chalk@^1.1.3:
   version "1.1.3"
@@ -116,14 +110,14 @@ cryptiles@3.x.x:
     boom "4.x.x"
 
 debug@^2.2.0:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-2.3.2.tgz#94cb466ef7d6d2c7e5245cdd6e4104f2d0d70d30"
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.3.3.tgz#40c453e67e6e13c901ddec317af8986cda9eff8c"
   dependencies:
     ms "0.7.2"
 
 dice-engine@roll-player/dice-engine:
-  version "0.1.1"
-  resolved "https://codeload.github.com/roll-player/dice-engine/tar.gz/fbd39fea055677af698ff21c8a93c7e174aa71d3"
+  version "0.3.1"
+  resolved "https://codeload.github.com/roll-player/dice-engine/tar.gz/4637158f709c45f0d42a29f9f2dff4c1d8683c4f"
   dependencies:
     random-js "^1.0.8"
 
@@ -175,11 +169,11 @@ figures@^1.3.5:
     escape-string-regexp "^1.0.5"
     object-assign "^4.1.0"
 
-fuse.js, fuse.js@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-2.5.0.tgz#98295c2ac1684edbba22250d7049cb6f033e95ce"
+fuse.js@^2.5.0:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-2.6.1.tgz#d118e00f9a859f7b354ed4f7740214249e32a57a"
 
-good:
+good@^7.1.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/good/-/good-7.1.0.tgz#9e05ad24c58a11b71cf5081700f3778db0b22c1c"
   dependencies:
@@ -218,12 +212,12 @@ has-ansi@^2.0.0:
     ansi-regex "^2.0.0"
 
 heavy@4.x.x:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/heavy/-/heavy-4.0.2.tgz#dbb66cda5f017a594fc6c8301df6999ea8d533f0"
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/heavy/-/heavy-4.0.3.tgz#976bba118b011b15fe904aa4f292a168bfc6232f"
   dependencies:
-    boom "3.x.x"
+    boom "4.x.x"
     hoek "4.x.x"
-    joi "9.x.x"
+    joi "10.x.x"
 
 hoek@4.x.x:
   version "4.1.0"
@@ -317,8 +311,8 @@ mimos@3.x.x:
     mime-db "1.x.x"
 
 moment@2.x.x:
-  version "2.16.0"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.16.0.tgz#f38f2c97c9889b0ee18fc6cc392e1e443ad2da8e"
+  version "2.17.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.17.1.tgz#fed9506063f36b10f066c8b59a144d7faebe1d82"
 
 ms@0.7.2:
   version "0.7.2"
@@ -375,8 +369,8 @@ os-tmpdir@~1.0.1:
   resolved "https://registry.yarnpkg.com/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
 
 pez@2.x.x:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/pez/-/pez-2.1.3.tgz#e53ebcbf48961b4aa1bb2b68cfd1eb20c9898039"
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/pez/-/pez-2.1.4.tgz#73f822fa62d599d65c4606f490d54d345191bc7c"
   dependencies:
     b64 "3.x.x"
     boom "4.x.x"
@@ -395,12 +389,12 @@ pinkie@^2.0.0:
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
 
 podium@^1.2.x:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/podium/-/podium-1.2.3.tgz#5c95b7cc2f5c87dd324e0ad4a9363ac62d66b371"
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/podium/-/podium-1.2.5.tgz#87c566c2f0365bcf0a1ec7602c4d01948cdd2ad5"
   dependencies:
     hoek "4.x.x"
     items "2.x.x"
-    joi "9.x.x"
+    joi "10.x.x"
 
 process-nextick-args@~1.0.6:
   version "1.0.7"
@@ -456,22 +450,21 @@ restore-cursor@^1.0.1:
     onetime "^1.0.0"
 
 run-async@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/run-async/-/run-async-2.2.0.tgz#8783abd83c7bb86f41ee0602fc82404b3bd6e8b9"
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/run-async/-/run-async-2.3.0.tgz#0371ab4ae0bdd720d4166d7dfda64ff7a445a6c0"
   dependencies:
     is-promise "^2.1.0"
-    pinkie-promise "^2.0.0"
 
 rx@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/rx/-/rx-4.1.0.tgz#a5f13ff79ef3b740fe30aa803fb09f98805d4782"
 
 shot@3.x.x:
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/shot/-/shot-3.3.2.tgz#691c2611759decc20487b20d25cc299f39e5f9b7"
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/shot/-/shot-3.4.0.tgz#e7125ee72575ae5218349e933636808d790d4b92"
   dependencies:
     hoek "4.x.x"
-    joi "9.x.x"
+    joi "10.x.x"
 
 spawn-sync@^1.0.15:
   version "1.0.15"
@@ -490,15 +483,15 @@ spell-finder@roll-player/spell-finder:
     inquirer "^1.2.2"
 
 statehood@5.x.x:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/statehood/-/statehood-5.0.0.tgz#ce2285aabeae398ae87cbba746184b7599b8fa31"
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/statehood/-/statehood-5.0.1.tgz#fc13c97b37751c18e70513d2b97e896ac8b73005"
   dependencies:
-    boom "3.x.x"
+    boom "4.x.x"
     cryptiles "3.x.x"
     hoek "4.x.x"
     iron "4.x.x"
     items "2.x.x"
-    joi "9.x.x"
+    joi "10.x.x"
 
 stream-shift@^1.0.0:
   version "1.0.0"
