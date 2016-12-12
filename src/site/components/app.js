@@ -9,6 +9,7 @@ import SpellSearch from './spellSearch'
 import Spell from './spell'
 import About from './about'
 import Welcome from './welcome'
+import Tracker from './tracker'
 
 const Root = props => {
   if (!props.children) {
@@ -40,6 +41,7 @@ class App extends React.Component {
             <Route path='/spell/:query' component={Spell} />
           </Route>
           <Route path='about' component={About} />
+          <Route path='tracker' component={Tracker} />
         </Route>
       </Router>
     )
