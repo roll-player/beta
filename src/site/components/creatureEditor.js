@@ -26,10 +26,10 @@ class CreatureEditor extends React.Component {
             <FormInput name='creature-name' value={creature.name} onChange={e => this.update('name', e)} />
           </FormField>
           <FormField label='initiative' htmlFor='creature-initiative'>
-            <FormInput initiative='creature-initiative' value={creature.initiative} onChange={e => this.update('initiative', e)} />
+            <FormInput name='creature-initiative' value={creature.initiative} onChange={e => this.update('initiative', e)} />
           </FormField>
           <FormField label='info' htmlFor='creature-info'>
-            <FormInput info='creature-info' value={creature.info} onChange={e => this.update('info', e)} />
+            <FormInput name='creature-info' value={creature.info} onChange={e => this.update('info', e)} />
           </FormField>
         </Form>
       </ModalBody>
