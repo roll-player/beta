@@ -38,7 +38,7 @@ class RollCard extends React.Component {
   renderDie (roll) {
     let rendered = null
     if (roll.left) {
-      rendered = this.renderDie(roll.left)
+      rendered = (<Row>this.renderDie(roll.left)</Row>)
     }
 
     if (roll.type === 'dice') {
@@ -54,15 +54,13 @@ class RollCard extends React.Component {
         </div>)
       })
 
-      let internal = [(<div>{roll.number}d{roll.sides}{roll.rightString}</div>), dice]
+      let internal = [(<div key={roll.id}>{roll.number}d{roll.sides}{roll.rightString}</div>), dice]
 
       return (
         <Row styleName='roll--die'>
           <Col>
             <Card>
-              <Row>
-                {rendered}
-              </Row>
+              {rendered}
               <Row>
                 {internal}
               </Row>

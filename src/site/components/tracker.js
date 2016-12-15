@@ -15,8 +15,19 @@ class Tracker extends React.Component {
     this.setState({creatures: [...this.state.creatures, {name: 'New Creature', initiative: 0, id: v4()}]})
   }
 
+  removeCreature (id) {
+    const index = this.state.creatures.indexOf(id)
+    this.setState({creatures: this.state.creatures.splice(index, 1)})
+  }
+
   render () {
-    let creatures = this.state.creatures.map(creature => (<TrackerCreature creature={creature} key={creature.id} />))
+    let creatures = this.state.creatures.map(creature => (
+      <Row key={creature.id}>
+        <Col sm='1'>
+          <TrackerCreature creature={creature} remove={this.removeCreature.bind(this)} />)
+        </Col>
+      </Row>
+    ))
 
     return (
       <div styleName='tracker'>
