@@ -6,7 +6,7 @@ import CreatureEditor from './creatureEditor'
 class TrackerCreature extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {expanded: false, edit: false, remove: props.removeCreature, creature: this.props.creature}
+    this.state = {expanded: false, edit: true, remove: props.removeCreature, creature: this.props.creature}
   }
 
   toggleExpand () {
@@ -30,9 +30,8 @@ class TrackerCreature extends React.Component {
     if (this.state.expanded) {
       expanded = (
         <Row>
-          <Col sm='1/6'>Expanded</Col>
-          <Col sm='4/6'>
-            Some information about this creature
+          <Col sm='5/6'>
+            {creature.info}
           </Col>
           <Col sm='1/6'>
             <Button type='primary' onClick={() => this.props.remove(creature.id)}>Remove</Button>
