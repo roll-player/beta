@@ -14,6 +14,7 @@
     "fuse.js": "^2.5.0",
     "good": "^7.1.0",
     "hapi": "^15.2.0",
+    "socket.io": "^1.7.2",
     "spell-finder": "roll-player/spell-finder"
   }
 }

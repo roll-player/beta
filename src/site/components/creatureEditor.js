@@ -2,6 +2,42 @@ import React from 'react'
 
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Form, FormField, FormInput } from 'elemental'
 
+const generateCreature = () => {
+  return {
+    name: 'New Creature',
+    initiative: 0,
+    useable: ['action', 'bonus action', 'movement', 'reaction'],
+    attacks: [],
+    spells: [],
+    abilities: []
+    notes: '',
+    abilityScores: [{
+      name: 'STR', score: 10,
+      name: 'DEX', score: 10,
+      name: 'CON', score: 10,
+      name: 'INT', score: 10,
+      name: 'WIS', score: 10,
+      name: 'CHA', score: 10
+    }],
+    AC: 10,
+    speed: 25,
+    toFields: () => {
+      [
+        { type: 'string', name: 'name' },
+        { type: 'number', name: 'initiative' },
+        { type: 'array', name: 'useable', typeOf: 'string' },
+        { type: 'array', name: 'attacks', typeOf: 'Attack' },
+        { type: 'array', name: 'spells', typeOf: 'Spell' },
+        { type: 'array', name: 'abilities', typeOf: 'Ability' },
+        { type: 'string', name: 'notes' },
+        { type: 'array', name: 'abilityScores', typeOf: 'Ability Score' },
+        { type: 'number', name:'AC' },
+        { type: 'number', name: 'speed' }
+      ]
+    }
+  }
+}
+
 class CreatureEditor extends React.Component {
   constructor (props) {
     super(props) 

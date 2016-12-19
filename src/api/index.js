@@ -87,6 +87,14 @@ server.route({
 
 // server.on('request-internal', request => console.log(request))
 
+var io = require('socket.io')(server.listener);
+
+io.on('connection', socket => {
+  socket.on('join', data => {
+    socket.join(data.room.id)
+  })
+})
+
 server.start(err => {
   if (err) {
     throw err

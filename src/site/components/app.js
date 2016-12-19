@@ -10,6 +10,8 @@ import Spell from './spell'
 import About from './about'
 import Welcome from './welcome'
 import Tracker from './tracker'
+import CreateRoom from './createRoom'
+import Room from './room'
 
 const Root = props => {
   if (!props.children) {
@@ -36,6 +38,8 @@ class App extends React.Component {
     return (
       <Router history={browserHistory}>
         <Route path='/' component={Root}>
+          <Route path='/room' component={CreateRoom} />
+          <Route path='/room/:id' component={Room} />
           <Route path='/roll' component={Roll} />
           <Route path='/spells' component={SpellSearch}>
             <Route path='/spell/:query' component={Spell} />

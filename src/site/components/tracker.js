@@ -4,11 +4,14 @@ import { v4 } from 'uuid'
 import { Row, Col, Button } from 'elemental'
 
 import TrackerCreature from './trackerCreature'
+import { getSocket } from '../stores/websocket'
 
 class Tracker extends React.Component {
   constructor (props) {
     super(props)
     this.state = { creatures: [] }
+    this.socket = getSocket(props.roomid)
+    this.socket.on('tracker-updated')
   }
 
   addCreature () {
