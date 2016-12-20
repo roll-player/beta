@@ -17,8 +17,6 @@ server.register([
   }
 })
 
-// server.on('request-internal', request => console.log(request))
-
 server.start(err => {
   if (err) {
     throw err

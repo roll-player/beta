@@ -47,16 +47,14 @@ class TrackerCreature extends React.Component {
     return (
       <Card>
         <Row onDoubleClick={this.toggleExpand.bind(this)}>
-          <Col sm='1/6'>
-          </Col>
+          <Col sm='1/6' />
           <Col sm='1/3'>
             {creature.name}
           </Col>
           <Col sm='1/6'>
             {creature.initiative}
           </Col>
-          <Col sm='1/6'>
-          </Col>
+          <Col sm='1/6' />
           <Col sm='1/6' onClick={this.edit.bind(this)}>
             <Glyph icon='pencil' />
           </Col>
