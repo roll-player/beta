@@ -23,7 +23,7 @@ class Tracker extends React.Component {
   sort () {
     let { creatures } = this.state
 
-    creatures.sort((a, b) => b.initiative - a.initiative)
+    creatures.sort((a, b) => a.initiative - b.initiative)
     this.setState({creatures})
   }
 
@@ -40,10 +40,8 @@ class Tracker extends React.Component {
       <div styleName='tracker'>
         <h1>Initiative Tracker</h1>
         <Row>
-          <Col>
+          <Col sm='1'>
             <Button type='primary' onClick={this.addCreature.bind(this)}>Add Creature</Button>
-          </Col>
-          <Col>
             <Button type='primary' onClick={this.sort.bind(this)}>Sort</Button>
           </Col>
         </Row>

@@ -34,7 +34,7 @@ class TrackerCreature extends React.Component {
             {creature.info}
           </Col>
           <Col sm='1/6'>
-            <Button type='primary' onClick={() => this.props.remove(creature.id)}>Remove</Button>
+            <Button type='primary' onClick={() => this.props.remove(creature.id)}>Del</Button>
           </Col>
         </Row>
       )
