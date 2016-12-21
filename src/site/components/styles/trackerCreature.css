@@ -6,5 +6,28 @@
 }
 
 .tracker--creature-avatar {
-  width: 100%;
+  height: 100%;
+}
+
+.tracker--creature-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tracker--creature-labeled {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid;
+  border-radius: 5px;
+  align-self: flex-start;
+  padding: 5px;
+}
+
+.tracker--creature-labeled-value {
+  font-size: 1.8em;
+}
+
+.tracker--creature-labeled-label {
+  font-size: .5em;
 }

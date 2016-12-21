@@ -30,11 +30,15 @@ const generateCreature = () => {
       { name: 'CHA', score: 10 }
     ],
     AC: 10,
+    hpMax: 30,
+    hpCurrent: 30,
     speed: 25,
     toFields: [
       { type: 'string', name: 'name' },
       { type: 'string', name: 'avatar' },
       { type: 'number', name: 'initiative' },
+      { type: 'number', name: 'hpCurrent' },
+      { type: 'number', name: 'hpMax' },
       { name: 'useable', typeOf: 'Togglable' },
       { type: 'array', name: 'attacks', typeOf: 'Attack' },
       { type: 'array', name: 'spells', typeOf: 'Spell' },

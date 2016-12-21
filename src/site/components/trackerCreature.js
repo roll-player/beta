@@ -1,7 +1,7 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
 
-import { Row, Col, Card, Button, ButtonGroup, Glyph } from 'elemental'
+import { Row, Col, Card, Button, ButtonGroup, Glyph, FormInput } from 'elemental'
 import styles from './styles/trackerCreature.css'
 
 import CreatureEditor from './creatureEditor'
@@ -23,6 +23,11 @@ class TrackerCreature extends React.Component {
   save (creature) {
     this.edit(false)
     this.setState({creature}) 
+  }
+
+  updateProperty (obj, prop, newValue) {
+    obj[prop] = newValue
+    this.setState(this.state)
   }
 
   render () {
@@ -48,8 +53,15 @@ class TrackerCreature extends React.Component {
     }
 
     const useables = creature.useable.map(useable => (
-      <Button size='xs' onClick={() => useable.used != useable.used} type={useable.used ? 'hollow-primary' : 'primary'}>{useable.value}</Button>
+      <Button size='xs' onClick={() => this.updateProperty(useable, 'used', !useable.used)} type={useable.used ? 'hollow-primary' : 'primary'}>{useable.value}</Button>
     ))
+
+    const makeLabeled = (value, label) => (
+      <div styleName='tracker--creature-labeled'>
+        <span styleName='tracker--creature-labeled-value'>{value}</span>
+        <span styleName='tracker--creature-labeled-label'>{label}</span>
+      </div>
+    )
     return (
       <Card styleName='tracker--creature'>
         <Row styleName='tracker--creature-main' onDoubleClick={this.toggleExpand.bind(this)}>
@@ -59,8 +71,9 @@ class TrackerCreature extends React.Component {
           <Col sm='1/3'>
             {creature.name}
           </Col>
-          <Col sm='1/6'>
-            {creature.initiative}
+          <Col sm='1/6' styleName='tracker--creature-group'>
+            {makeLabeled(creature.AC, 'AC')}
+            {makeLabeled(creature.initiative, 'initiative')}
           </Col>
           <Col sm='1/6'>
             <ButtonGroup>
