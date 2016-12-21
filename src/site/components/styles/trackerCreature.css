@@ -6,28 +6,51 @@
 }
 
 .tracker--creature-avatar {
-  height: 100%;
+  width: 100%;
 }
 
 .tracker--creature-group {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.tracker--creature-useable {
+  font-size: 12px;
+  margin-right: 5px;
+  flex: 1;
+  max-width: 100%;
+}
+
+.tracker--creature-useable-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .tracker--creature-labeled {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   border: 1px solid;
-  border-radius: 5px;
-  align-self: flex-start;
-  padding: 5px;
+  height: 60px;
+  padding: 10px;
+  margin-right: 5px;
+  flex: 1;
+}
+
+.tracker--creature-value {
+  font-family: monospace;
+  font-weight: bold;
 }
 
 .tracker--creature-labeled-value {
-  font-size: 1.8em;
+  composes: tracker--creature-value;
+  font-size: 22px;
 }
 
 .tracker--creature-labeled-label {
-  font-size: .5em;
+  composes: tracker--creature-value;
+  font-size: 12px;
 }

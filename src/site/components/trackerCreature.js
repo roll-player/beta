@@ -53,7 +53,9 @@ class TrackerCreature extends React.Component {
     }
 
     const useables = creature.useable.map(useable => (
-      <Button size='xs' onClick={() => this.updateProperty(useable, 'used', !useable.used)} type={useable.used ? 'hollow-primary' : 'primary'}>{useable.value}</Button>
+      <Button styleName='tracker--creature-useable' key={useable.value} size='medium' onClick={() => this.updateProperty(useable, 'used', !useable.used)} type={useable.used ? 'hollow-primary' : 'primary'}>
+        <div styleName='tracker--creature-useable-text'>{useable.value}</div>
+      </Button>
     ))
 
     const makeLabeled = (value, label) => (
@@ -73,12 +75,11 @@ class TrackerCreature extends React.Component {
           </Col>
           <Col sm='1/6' styleName='tracker--creature-group'>
             {makeLabeled(creature.AC, 'AC')}
-            {makeLabeled(creature.initiative, 'initiative')}
+            {makeLabeled(creature.initiative, 'Initiative')}
+            {makeLabeled(creature.hpCurrent, 'Health')}
           </Col>
           <Col sm='1/6'>
-            <ButtonGroup>
-              {useables}
-            </ButtonGroup>
+            {useables}
           </Col>
           <Col sm='1/6' onClick={this.edit.bind(this)}>
             <Glyph icon='pencil' />
