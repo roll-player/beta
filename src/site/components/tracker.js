@@ -10,7 +10,12 @@ const generateCreature = () => {
     id: v4(),
     name: 'New Creature',
     initiative: 0,
-    useable: ['action', 'bonus action', 'movement', 'reaction'],
+    useable: [
+      { value: 'action', used: false },
+      { value: 'bonus action', used: false },
+      { value: 'movement',used: false },
+      { value: 'reaction', used: false }
+    ],
     attacks: [],
     spells: [],
     abilities: [],
@@ -25,20 +30,18 @@ const generateCreature = () => {
     ],
     AC: 10,
     speed: 25,
-    toFields: () => {
-      return [
-        { type: 'string', name: 'name' },
-        { type: 'number', name: 'initiative' },
-        { type: 'array', name: 'useable', typeOf: 'string' },
-        { type: 'array', name: 'attacks', typeOf: 'Attack' },
-        { type: 'array', name: 'spells', typeOf: 'Spell' },
-        { type: 'array', name: 'abilities', typeOf: 'Ability' },
-        { type: 'string', name: 'notes' },
-        { type: 'array', name: 'abilityScores', typeOf: 'Ability Score' },
-        { type: 'number', name: 'AC' },
-        { type: 'number', name: 'speed' }
-      ]
-    }
+    toFields: [
+      { type: 'string', name: 'name' },
+      { type: 'number', name: 'initiative' },
+      { name: 'useable', typeOf: 'Togglable' },
+      { type: 'array', name: 'attacks', typeOf: 'Attack' },
+      { type: 'array', name: 'spells', typeOf: 'Spell' },
+      { type: 'array', name: 'abilities', typeOf: 'Ability' },
+      { type: 'string', name: 'notes' },
+      { type: 'array', name: 'abilityScores', typeOf: 'AbilityScore' },
+      { type: 'number', name: 'AC' },
+      { type: 'number', name: 'speed' }
+    ]
   }
 }
 class Tracker extends React.Component {

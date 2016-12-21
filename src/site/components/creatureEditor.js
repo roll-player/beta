@@ -2,7 +2,6 @@ import React from 'react'
 
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Form, FormField, FormInput } from 'elemental'
 
-
 class CreatureEditor extends React.Component {
   constructor (props) {
     super(props) 
@@ -19,11 +18,24 @@ class CreatureEditor extends React.Component {
   render () {
     let { creature } = this.state
 
-    let inputs = creature.toFields().map(props => (
-      <FormField key={props.name} label={props.name} htmlFor={`creature-${props.name}`}>
-        <FormInput name={`creature-${props.name}`} value={creature[props.name]} onChange={e => this.update(props.name, e)} />
-      </FormField>
-    ))
+    let inputs = creature.toFields.map(props => {
+      let input = null 
+
+      switch (props.typeOf) {
+        case 'Togglable':
+          input = creature[props.name].map(toggle => (<div>{toggle.value}</div>))
+          break
+        default:
+          input = (<FormInput type={props.type} name={`creature-${props.name}`} value={creature[props.name]} onChange={e => this.update(props.name, e)} />)
+          break
+      }
+
+      return (
+        <FormField key={props.name} label={props.name} htmlFor={`creature-${props.name}`}>
+          {input}
+        </FormField>
+      )
+    })
 
     return (<Modal isOpen>
       <ModalHeader text={creature.name} />

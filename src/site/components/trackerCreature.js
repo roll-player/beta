@@ -41,7 +41,7 @@ class TrackerCreature extends React.Component {
     }
 
     if (this.state.edit) {
-      edit = (<CreatureEditor creature={creature} onClose={() => this.edit()} onSave={this.save.bind(this)} />) 
+      edit = (<CreatureEditor creature={creature} onClose={this.edit.bind(this)} onSave={this.save.bind(this)} />) 
     }
 
     return (
