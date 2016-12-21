@@ -1,5 +1,8 @@
 import React from 'react'
-import { Row, Col, Card, Button, Glyph } from 'elemental'
+import CSSModules from 'react-css-modules'
+
+import { Row, Col, Card, Button, ButtonGroup, Glyph } from 'elemental'
+import styles from './styles/trackerCreature.css'
 
 import CreatureEditor from './creatureEditor'
 
@@ -44,17 +47,26 @@ class TrackerCreature extends React.Component {
       edit = (<CreatureEditor creature={creature} onClose={this.edit.bind(this)} onSave={this.save.bind(this)} />) 
     }
 
+    const useables = creature.useable.map(useable => (
+      <Button size='xs' onClick={() => useable.used != useable.used} type={useable.used ? 'hollow-primary' : 'primary'}>{useable.value}</Button>
+    ))
     return (
-      <Card>
-        <Row onDoubleClick={this.toggleExpand.bind(this)}>
-          <Col sm='1/6' />
+      <Card styleName='tracker--creature'>
+        <Row styleName='tracker--creature-main' onDoubleClick={this.toggleExpand.bind(this)}>
+          <Col sm='1/6'>
+            <img src={creature.avatar} styleName='tracker--creature-avatar' />
+          </Col>
           <Col sm='1/3'>
             {creature.name}
           </Col>
           <Col sm='1/6'>
             {creature.initiative}
           </Col>
-          <Col sm='1/6' />
+          <Col sm='1/6'>
+            <ButtonGroup>
+              {useables}
+            </ButtonGroup>
+          </Col>
           <Col sm='1/6' onClick={this.edit.bind(this)}>
             <Glyph icon='pencil' />
           </Col>
@@ -66,4 +78,4 @@ class TrackerCreature extends React.Component {
   }
 }
 
-export default TrackerCreature
+export default CSSModules(TrackerCreature, styles)

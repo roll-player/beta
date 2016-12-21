@@ -8,6 +8,7 @@ import TrackerCreature from './trackerCreature'
 const generateCreature = () => {
   return {
     id: v4(),
+    avatar: '',
     name: 'New Creature',
     initiative: 0,
     useable: [
@@ -32,6 +33,7 @@ const generateCreature = () => {
     speed: 25,
     toFields: [
       { type: 'string', name: 'name' },
+      { type: 'string', name: 'avatar' },
       { type: 'number', name: 'initiative' },
       { name: 'useable', typeOf: 'Togglable' },
       { type: 'array', name: 'attacks', typeOf: 'Attack' },
@@ -47,7 +49,9 @@ const generateCreature = () => {
 class Tracker extends React.Component {
   constructor (props) {
     super(props)
-    this.state = { creatures: [] }
+    let test = generateCreature()
+    test.avatar = 'https://placecage.com/160/160'
+    this.state = { creatures: [test] }
   }
 
   addCreature () {
