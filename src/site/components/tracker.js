@@ -69,7 +69,7 @@ class Tracker extends React.Component {
   sort () {
     let { creatures } = this.state
 
-    creatures.sort((a, b) => a.initiative - b.initiative)
+    creatures.sort((a, b) => b.initiative - a.initiative)
     this.setState({creatures})
   }
 
