@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Form, FormField, FormInput } from 'elemental'
+import Togglable from './editors/togglable'
 
 class CreatureEditor extends React.Component {
   constructor (props) {
@@ -23,7 +24,7 @@ class CreatureEditor extends React.Component {
 
       switch (props.typeOf) {
         case 'Togglable':
-          input = creature[props.name].map(toggle => (<div>{toggle.value}</div>))
+          input = creature[props.name].map(toggle => (<Togglable togglable={toggle} key={toggle.name} />))
           break
         default:
           input = (<FormInput type={props.type} name={`creature-${props.name}`} value={creature[props.name]} onChange={e => this.update(props.name, e)} />)

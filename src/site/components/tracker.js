@@ -1,26 +1,31 @@
 import React from 'react'
 import { v4 } from 'uuid'
-
+import Immutable from 'immutable'
 import { Row, Col, Button } from 'elemental'
 
 import TrackerCreature from './trackerCreature'
+const generateEditableProperty = property => {
+  let newProperty = {}
+  newProperty[v4()] = Immutable.Map({
+    ...property,
+    isEditable: true
+  })
+
+  return newProperty
+}
 
 const generateCreature = () => {
-  return {
+  let creature = Immutable.Map({
     id: v4(),
-    avatar: '',
-    name: 'New Creature',
-    initiative: 0,
     useable: [
-      { value: 'action', used: false },
-      { value: 'bonus action', used: false },
-      { value: 'movement',used: false },
-      { value: 'reaction', used: false }
+      { name: 'action', value: 'action', used: false },
+      { name: 'bonus_action', value: 'bonus action', used: false },
+      { name: 'movement', value: 'movement',used: false },
+      { name: 'reaction', value: 'reaction', used: false }
     ],
     attacks: [],
     spells: [],
     abilities: [],
-    notes: '',
     abilityScores: [
       { name: 'STR', score: 10 },
       { name: 'DEX', score: 10 },
@@ -28,33 +33,24 @@ const generateCreature = () => {
       { name: 'INT', score: 10 },
       { name: 'WIS', score: 10 },
       { name: 'CHA', score: 10 }
-    ],
-    AC: 10,
-    hpMax: 30,
-    hpCurrent: 30,
-    speed: 25,
-    toFields: [
-      { type: 'string', name: 'name' },
-      { type: 'string', name: 'avatar' },
-      { type: 'number', name: 'initiative' },
-      { type: 'number', name: 'hpCurrent' },
-      { type: 'number', name: 'hpMax' },
-      { name: 'useable', typeOf: 'Togglable' },
-      { type: 'array', name: 'attacks', typeOf: 'Attack' },
-      { type: 'array', name: 'spells', typeOf: 'Spell' },
-      { type: 'array', name: 'abilities', typeOf: 'Ability' },
-      { type: 'string', name: 'notes' },
-      { type: 'array', name: 'abilityScores', typeOf: 'AbilityScore' },
-      { type: 'number', name: 'AC' },
-      { type: 'number', name: 'speed' }
     ]
-  }
+  })
+
+  creature = creature.merge(generateEditableProperty({name: 'avatar', value: '', type: 'string'}))
+  creature = creature.merge(generateEditableProperty({name: 'name', value: 'New Creature', type: 'string'}))
+  creature = creature.merge(generateEditableProperty({name: 'initiative', value: 0, type: 'number'}))
+  creature = creature.merge(generateEditableProperty({name: 'AC', value: 10, type: 'number'}))
+  creature = creature.merge(generateEditableProperty({name: 'hpMax', value: 30, type: 'number'}))
+  creature = creature.merge(generateEditableProperty({name: 'hpCurrent', value: 30, type: 'number'}))
+  creature = creature.merge(generateEditableProperty({name: 'speed', value: 25, type: 'number'}))
+  creature = creature.merge(generateEditableProperty({name: 'notes', value: '', type: 'string'}))
+
+  return creature
 }
 class Tracker extends React.Component {
   constructor (props) {
     super(props)
     let test = generateCreature()
-    test.avatar = 'https://placecage.com/160/160'
     this.state = { creatures: [test] }
   }
 

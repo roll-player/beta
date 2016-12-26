@@ -4,7 +4,8 @@ import CSSModules from 'react-css-modules'
 import { Row, Col, Card, Button, ButtonGroup, Glyph, FormInput } from 'elemental'
 import styles from './styles/trackerCreature.css'
 
-import CreatureEditor from './creatureEditor'
+import Immutable from 'immutable'
+import Editor from './editors/editor'
 
 class TrackerCreature extends React.Component {
   constructor (props) {
@@ -30,6 +31,12 @@ class TrackerCreature extends React.Component {
     this.setState(this.state)
   }
 
+  findPropertyByName (seq, name) {
+    let find = seq.filter(prop => prop.get && prop.get('name') === name).toArray()
+    if (find && find[0]) {
+      return find[0]
+    }
+  }
   render () {
     let {creature} = this.state 
 
@@ -49,14 +56,14 @@ class TrackerCreature extends React.Component {
     }
 
     if (this.state.edit) {
-      edit = (<CreatureEditor creature={creature} onClose={this.edit.bind(this)} onSave={this.save.bind(this)} />) 
+      edit = (<Editor properties={creature} onClose={this.save.bind(this)} />) 
     }
 
-    const useables = creature.useable.map(useable => (
-      <Button styleName='tracker--creature-useable' key={useable.value} size='medium' onClick={() => this.updateProperty(useable, 'used', !useable.used)} type={useable.used ? 'hollow-primary' : 'primary'}>
-        <div styleName='tracker--creature-useable-text'>{useable.value}</div>
-      </Button>
-    ))
+    //const useables = creature.useable.map(useable => (
+    //  <Button styleName='tracker--creature-useable' key={useable.value} size='medium' onClick={() => this.updateProperty(useable, 'used', !useable.used)} type={useable.used ? 'hollow-primary' : 'primary'}>
+    //    <div styleName='tracker--creature-useable-text'>{useable.value}</div>
+    //  </Button>
+    //))
 
     const makeLabeled = (value, label) => (
       <div styleName='tracker--creature-labeled'>
@@ -64,22 +71,30 @@ class TrackerCreature extends React.Component {
         <span styleName='tracker--creature-labeled-label'>{label}</span>
       </div>
     )
+    let propertySequence = Immutable.Seq(creature)
+
+    let AC = this.findPropertyByName(propertySequence, 'AC')
+    let initiative = this.findPropertyByName(propertySequence, 'initiative')
+    let hpCurrent = this.findPropertyByName(propertySequence, 'hpCurrent')
+    let avatar = this.findPropertyByName(propertySequence, 'avatar')
+    let name = this.findPropertyByName(propertySequence, 'name')
+
     return (
       <Card styleName='tracker--creature'>
         <Row styleName='tracker--creature-main' onDoubleClick={this.toggleExpand.bind(this)}>
           <Col sm='1/6'>
-            <img src={creature.avatar} styleName='tracker--creature-avatar' />
+            <img src={avatar.get('value')} styleName='tracker--creature-avatar' />
           </Col>
           <Col sm='1/3'>
-            {creature.name}
+            {name.get('value')}
           </Col>
           <Col sm='1/6' styleName='tracker--creature-group'>
-            {makeLabeled(creature.AC, 'AC')}
-            {makeLabeled(creature.initiative, 'Initiative')}
-            {makeLabeled(creature.hpCurrent, 'Health')}
+            {makeLabeled(AC.get('value'), 'AC')}
+            {makeLabeled(initiative.get('value'), 'Initiative')}
+            {makeLabeled(hpCurrent.get('value'), 'Health')}
           </Col>
           <Col sm='1/6'>
-            {useables}
+            {'useables'}
           </Col>
           <Col sm='1/6' onClick={this.edit.bind(this)}>
             <Glyph icon='pencil' />
