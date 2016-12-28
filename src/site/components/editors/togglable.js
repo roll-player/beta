@@ -1,16 +1,38 @@
 import React from 'react'
 
-import { FormInput, FormField, Button } from 'elemental'
+import { FormInput, InputGroup, FormField, Button, Card } from 'elemental'
+import Immutable from 'immutable'
 
 class Togglable extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = { togglable: Immutable.Map(props.togglable) }
+  }
+
+  interalChanged (key, value) {
+    const changed = this.state.togglable.set(key, value)
+    this.setState({togglable: changed})
+  }
   render () {
-  console.log(this.props)
-    let { togglable, onChanged } = this.props
+    const { togglable } = this.state
+    const name = togglable.get('name')
+    const value = togglable.get('value')
+    const used = togglable.get('used')
+
     return (
-      <div>
-        <FormInput type='string' name={togglable.value} value={togglable.value} />
-        <Button onClick={() => onChanged && onChanged({value: togglable.value, used: !togglable.used})}>{togglable.used ? 'Used' : 'Not Used'}</Button>
-      </div>
+      <Card>
+        <InputGroup>
+          <FormField htmlFor={name} label={'name'}>
+            <FormInput type='string' name={name} value={name} onChange={e => this.interalChanged('name', e.target.value)} />
+          </FormField>
+          <FormField htmlFor={value} label={'label'}>
+            <FormInput type='string' name={value} value={value} onChange={(e) => this.interalChanged('value', e.target.value)} />
+          </FormField>
+          <FormField htmlFor={'used'} label={'Used'}>
+            <Button onClick={() => this.interalChanged('used', !used)}>{used ? 'Used' : 'Not Used'}</Button>
+          </FormField>
+        </InputGroup>
+      </Card>
     )
   }
 }

@@ -2,8 +2,7 @@ import React from 'react'
 import Immutable from 'immutable'
 
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Form, FormField, FormInput } from 'elemental'
-import Togglable from './togglable'
-
+import List from './List'
 
 class Editor extends React.Component {
   constructor (props) {
@@ -14,17 +13,17 @@ class Editor extends React.Component {
     this.state = { object: Immutable.Map(properties), original, title, onClose }
   }
 
-  onPropertyChanged (id, e) {
-    let newObject = this.state.object.set(id, this.state.object.get(id).set('value', e.target.value))
+  onPropertyChanged (id, value) {
+    let newObject = this.state.object.set(id, this.state.object.get(id).set('value', value))
     this.setState({object: newObject})
   }
 
   getInput (key, prop) {
     switch (prop.type) {
-      case 'Togglable':
-        return (<Togglable togglable={prop} key={prop.name} />)
+      case 'array':
+        return (<List render={prop.render} items={prop.value} add={prop.add} onListChanged={newList => this.onPropertyChanged(key, newList)} />)
       default:
-        return (<FormInput type={prop.type} name={`editor-${prop.name}`} value={prop.value} onChange={e => this.onPropertyChanged(key, e)} />)
+        return (<FormInput type={prop.type} name={`editor-${prop.name}`} value={prop.value} onChange={e => this.onPropertyChanged(key, e.target.value)} />)
     }
   }
 

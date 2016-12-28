@@ -37,6 +37,7 @@ class TrackerCreature extends React.Component {
       return find[0]
     }
   }
+
   render () {
     let {creature} = this.state 
 
@@ -72,12 +73,13 @@ class TrackerCreature extends React.Component {
       </div>
     )
     let propertySequence = Immutable.Seq(creature)
-
-    let AC = this.findPropertyByName(propertySequence, 'AC')
-    let initiative = this.findPropertyByName(propertySequence, 'initiative')
-    let hpCurrent = this.findPropertyByName(propertySequence, 'hpCurrent')
-    let avatar = this.findPropertyByName(propertySequence, 'avatar')
-    let name = this.findPropertyByName(propertySequence, 'name')
+    let find = this.findPropertyByName.bind(this, propertySequence)
+    let AC = find('AC')
+    let initiative = find('initiative')
+    let hpCurrent = find('hpCurrent')
+    let avatar = find('avatar')
+    let name = find('name')
+    let useables = find('useables').get('value')
 
     return (
       <Card styleName='tracker--creature'>
@@ -94,7 +96,7 @@ class TrackerCreature extends React.Component {
             {makeLabeled(hpCurrent.get('value'), 'Health')}
           </Col>
           <Col sm='1/6'>
-            {'useables'}
+            {useables.map((useable, key) => (<Button key={key} type={useable.used ? 'primary-hollow' : 'primary'} onClick={() => this.updateUseable(key, !useable.used)}>{useable.value}</Button>))}
           </Col>
           <Col sm='1/6' onClick={this.edit.bind(this)}>
             <Glyph icon='pencil' />

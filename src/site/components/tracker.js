@@ -2,6 +2,7 @@ import React from 'react'
 import { v4 } from 'uuid'
 import Immutable from 'immutable'
 import { Row, Col, Button } from 'elemental'
+import Togglable from './editors/togglable'
 
 import TrackerCreature from './trackerCreature'
 const generateEditableProperty = property => {
@@ -17,12 +18,6 @@ const generateEditableProperty = property => {
 const generateCreature = () => {
   let creature = Immutable.Map({
     id: v4(),
-    useable: [
-      { name: 'action', value: 'action', used: false },
-      { name: 'bonus_action', value: 'bonus action', used: false },
-      { name: 'movement', value: 'movement',used: false },
-      { name: 'reaction', value: 'reaction', used: false }
-    ],
     attacks: [],
     spells: [],
     abilities: [],
@@ -35,6 +30,19 @@ const generateCreature = () => {
       { name: 'CHA', score: 10 }
     ]
   })
+
+  creature = creature.merge(generateEditableProperty({
+    name: 'useables', 
+    value: Immutable.List.of(
+      { name: 'action', value: 'action', used: false },
+      { name: 'bonus_action', value: 'bonus action', used: false },
+      { name: 'movement', value: 'movement', used: false },
+      { name: 'reaction', value: 'reaction', used: false }
+    ), 
+    type: 'array', 
+    add: () => { return { name: 'new_useable', value: 'useable', used: false } },
+    render: (item, onChanged) => (<Togglable togglable={item} onChanged={onChanged} />)
+  }))
 
   creature = creature.merge(generateEditableProperty({name: 'avatar', value: '', type: 'string'}))
   creature = creature.merge(generateEditableProperty({name: 'name', value: 'New Creature', type: 'string'}))
