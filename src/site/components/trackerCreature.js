@@ -1,10 +1,10 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
-
+import Immutable from 'immutable'
 import { Row, Col, Card, Button, ButtonGroup, Glyph, FormInput } from 'elemental'
+
 import styles from './styles/trackerCreature.css'
 
-import Immutable from 'immutable'
 import Editor from './editors/editor'
 
 class TrackerCreature extends React.Component {
@@ -26,16 +26,8 @@ class TrackerCreature extends React.Component {
     this.setState({creature}) 
   }
 
-  updateProperty (obj, prop, newValue) {
-    obj[prop] = newValue
-    this.setState(this.state)
-  }
-
-  findPropertyByName (seq, name) {
-    let find = seq.filter(prop => prop.get && prop.get('name') === name).toArray()
-    if (find && find[0]) {
-      return find[0]
-    }
+  updateCreature (keys, value) {
+    this.setState({creature: this.state.creature.setIn(keys, value)})
   }
 
   render () {
@@ -60,26 +52,19 @@ class TrackerCreature extends React.Component {
       edit = (<Editor properties={creature} onClose={this.save.bind(this)} />) 
     }
 
-    //const useables = creature.useable.map(useable => (
-    //  <Button styleName='tracker--creature-useable' key={useable.value} size='medium' onClick={() => this.updateProperty(useable, 'used', !useable.used)} type={useable.used ? 'hollow-primary' : 'primary'}>
-    //    <div styleName='tracker--creature-useable-text'>{useable.value}</div>
-    //  </Button>
-    //))
-
-    const makeLabeled = (value, label) => (
+    const makeLabeled = ({value, label}) => (
       <div styleName='tracker--creature-labeled'>
         <span styleName='tracker--creature-labeled-value'>{value}</span>
         <span styleName='tracker--creature-labeled-label'>{label}</span>
       </div>
     )
-    let propertySequence = Immutable.Seq(creature)
-    let find = this.findPropertyByName.bind(this, propertySequence)
-    let AC = find('AC')
-    let initiative = find('initiative')
-    let hpCurrent = find('hpCurrent')
-    let avatar = find('avatar')
-    let name = find('name')
-    let useables = find('useables').get('value')
+
+    const AC = creature.get('AC')
+    const initiative = creature.get('initiative')
+    const hpCurrent = creature.get('hpCurrent')
+    const avatar = creature.get('avatar')
+    const name = creature.get('name')
+    const useables = creature.get('useables')
 
     return (
       <Card styleName='tracker--creature'>
@@ -91,15 +76,28 @@ class TrackerCreature extends React.Component {
             {name.get('value')}
           </Col>
           <Col sm='1/6' styleName='tracker--creature-group'>
-            {makeLabeled(AC.get('value'), 'AC')}
-            {makeLabeled(initiative.get('value'), 'Initiative')}
-            {makeLabeled(hpCurrent.get('value'), 'Health')}
-          </Col>
-          <Col sm='1/6'>
-            {useables.map((useable, key) => (<Button key={key} type={useable.used ? 'primary-hollow' : 'primary'} onClick={() => this.updateUseable(key, !useable.used)}>{useable.value}</Button>))}
+            {makeLabeled({ value: AC.get('value'), label: 'AC' })}
+            {makeLabeled({ value: initiative.get('value'), label: 'Initiative' })}
+            {makeLabeled({ value: hpCurrent.get('value'), label: 'Health' })}
           </Col>
           <Col sm='1/6' onClick={this.edit.bind(this)}>
             <Glyph icon='pencil' />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            {useables.get('value').map((useable, key) => {
+              return (<Button key={useable.name} 
+                  size='sm' 
+                  type={useable.get('used') ? 'hollow-primary' : 'primary'} 
+                  onClick={() => {
+                    const keys = ['useables', 'value', key]
+                    const updated = useable.set('used', !useable.get('used'))
+                    this.updateCreature(keys, updated)
+                  }}>
+                  {useable.get('value')}
+                </Button>)
+              })}
           </Col>
         </Row>
         {expanded}

@@ -21,7 +21,7 @@ class Editor extends React.Component {
   getInput (key, prop) {
     switch (prop.type) {
       case 'array':
-        return (<List render={prop.render} items={prop.value} add={prop.add} onListChanged={newList => this.onPropertyChanged(key, newList)} />)
+        return (<List {...prop} onListChanged={newList => this.onPropertyChanged(key, newList)} />)
       default:
         return (<FormInput type={prop.type} name={`editor-${prop.name}`} value={prop.value} onChange={e => this.onPropertyChanged(key, e.target.value)} />)
     }
@@ -31,7 +31,7 @@ class Editor extends React.Component {
     let inputs = (this.state.object)
       .filter(prop => prop.get && prop.get('isEditable'))
       .map((prop, key) => {
-        prop = prop.toObject()
+        prop = prop.toJS()
         return (
           <FormField key={key} label={prop.name} htmlFor={`editor-${prop.name}`}>
             {this.getInput(key, prop)}

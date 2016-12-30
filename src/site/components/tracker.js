@@ -7,16 +7,16 @@ import Togglable from './editors/togglable'
 import TrackerCreature from './trackerCreature'
 const generateEditableProperty = property => {
   let newProperty = {}
-  newProperty[v4()] = Immutable.Map({
+  newProperty[property.name] = { 
     ...property,
-    isEditable: true
-  })
+    isEditable: true,
+  }
 
   return newProperty
 }
 
 const generateCreature = () => {
-  let creature = Immutable.Map({
+  let creature = {
     id: v4(),
     attacks: [],
     spells: [],
@@ -29,52 +29,64 @@ const generateCreature = () => {
       { name: 'WIS', score: 10 },
       { name: 'CHA', score: 10 }
     ]
-  })
+  }
 
-  creature = creature.merge(generateEditableProperty({
+  creature = Object.assign(creature, generateEditableProperty({
     name: 'useables', 
-    value: Immutable.List.of(
+    value: [ 
       { name: 'action', value: 'action', used: false },
       { name: 'bonus_action', value: 'bonus action', used: false },
       { name: 'movement', value: 'movement', used: false },
       { name: 'reaction', value: 'reaction', used: false }
-    ), 
+    ], 
     type: 'array', 
-    add: () => { return { name: 'new_useable', value: 'useable', used: false } },
+    actions: [
+      {
+        type: 'primary',
+        onClick: (context) => {
+          const newCreature = Immutable.fromJS({ name: 'new_useable', value: 'useable', used: false })
+          context.onListChanged('useables', context.list.push(newCreature))
+        },
+        text: 'Add'
+      }
+    ],
     render: (item, onChanged) => (<Togglable togglable={item} onChanged={onChanged} />)
   }))
 
-  creature = creature.merge(generateEditableProperty({name: 'avatar', value: '', type: 'string'}))
-  creature = creature.merge(generateEditableProperty({name: 'name', value: 'New Creature', type: 'string'}))
-  creature = creature.merge(generateEditableProperty({name: 'initiative', value: 0, type: 'number'}))
-  creature = creature.merge(generateEditableProperty({name: 'AC', value: 10, type: 'number'}))
-  creature = creature.merge(generateEditableProperty({name: 'hpMax', value: 30, type: 'number'}))
-  creature = creature.merge(generateEditableProperty({name: 'hpCurrent', value: 30, type: 'number'}))
-  creature = creature.merge(generateEditableProperty({name: 'speed', value: 25, type: 'number'}))
-  creature = creature.merge(generateEditableProperty({name: 'notes', value: '', type: 'string'}))
+  creature = Object.assign(creature, generateEditableProperty({name: 'avatar', value: '', type: 'string'}))
+  creature = Object.assign(creature, generateEditableProperty({name: 'name', value: 'New Creature', type: 'string'}))
+  creature = Object.assign(creature, generateEditableProperty({name: 'initiative', value: 0, type: 'number'}))
+  creature = Object.assign(creature, generateEditableProperty({name: 'AC', value: 10, type: 'number'}))
+  creature = Object.assign(creature, generateEditableProperty({name: 'hpMax', value: 30, type: 'number'}))
+  creature = Object.assign(creature, generateEditableProperty({name: 'hpCurrent', value: 30, type: 'number'}))
+  creature = Object.assign(creature, generateEditableProperty({name: 'speed', value: 25, type: 'number'}))
+  creature = Object.assign(creature, generateEditableProperty({name: 'notes', value: '', type: 'string'}))
 
-  return creature
+  return Immutable.fromJS(creature)
 }
 class Tracker extends React.Component {
   constructor (props) {
     super(props)
     let test = generateCreature()
-    this.state = { creatures: [test] }
+    this.state = { creatures: Immutable.fromJS([test]) }
   }
 
   addCreature () {
-    this.setState({creatures: [...this.state.creatures, generateCreature()]})
+    this.updateCreatures(this.state.creatures.push(generateCreature()))
   }
 
   removeCreature (id) {
-    this.setState({creatures: this.state.creatures.filter(creature => creature.id != id)})
+    this.updateCreatures(this.state.creatures.del(id))
+  }
+
+  updateCreatures (creatures) {
+    this.setState({creatures})
   }
 
   sort () {
     let { creatures } = this.state
 
     creatures.sort((a, b) => b.initiative - a.initiative)
-    this.setState({creatures})
   }
 
   render () {

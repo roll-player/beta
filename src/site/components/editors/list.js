@@ -6,8 +6,8 @@ import { Card, Button, Row, Col } from 'elemental'
 class List extends React.Component {
   constructor (props) {
     super(props)
-    let { items, render, add, title, onListChanged } = props
-    this.state = { items, render, title }
+    let { items, render, actions, title } = props
+    this.state = { items, render, title, actions }
   }
 
   internalChanged (key, value) {
@@ -22,24 +22,19 @@ class List extends React.Component {
   }
 
   render () {
-    let { items } = this.state
+    let { items, actions, render } = this.state
     let sequence = Immutable.Seq(items)
-    const rendered = sequence.map((item, key) => (
-      <Row key={item.id}>
-        <Col>{this.props.render(item, this.internalChanged.bind(this, key))}</Col>
-      </Row>
-    ))
+    const rendered = []
+     
+    if (actions.length > 0) {
+      const renderedActions = actions.map(action => (<Button {...action} key={action.key}>{action.label}</Button>))
+      rendered.push((<Row><Col>{renderedActions}</Col></Row>))
+    }
 
-    return (
-      <Card>
-        <Row key={0}>
-          <Col>
-            <Button onClick={this.addItem.bind(this)}>Add</Button>
-          </Col>
-        </Row>
-        {rendered}
-      </Card>
-    )
+    const renderedItems = sequence.map((item, key) => (<Row key={item.id}><Col>{render(item, this.internalChanged.bind(this, key))}</Col></Row>))
+    rendered.concat(renderedItems)
+
+    return (<Card>{rendered}</Card>)
   }
 }
 
