@@ -1,5 +1,5 @@
 import React from 'react'
-import Immutable from 'immutable'
+import { Map } from 'immutable'
 
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Form, FormField, FormInput } from 'elemental'
 import List from './List'
@@ -7,10 +7,11 @@ import List from './List'
 class Editor extends React.Component {
   constructor (props) {
     super(props)
-    let { properties, onClose, title } = props
-    let original = Immutable.Map(properties)
+    let { editable, onClose, title } = props
+    editable = Map.isMap(editable) ? editable : Immutable.Map(editable)
+    let original = editable
 
-    this.state = { object: Immutable.Map(properties), original, title, onClose }
+    this.state = { object: editable, original, title, onClose }
   }
 
   onPropertyChanged (id, value) {
