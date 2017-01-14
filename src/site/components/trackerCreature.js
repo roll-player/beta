@@ -10,7 +10,13 @@ import Editor from './editors/editor'
 class TrackerCreature extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {expanded: false, edit: true, remove: props.removeCreature, creature: this.props.creature}
+    this.state = {
+      expanded: false, 
+      edit: true, 
+      remove: props.removeCreature, 
+      creature: this.props.creature,
+      updated: this.props.updated
+    }
   }
 
   toggleExpand () {
@@ -24,6 +30,7 @@ class TrackerCreature extends React.Component {
   save (creature) {
     this.edit(false)
     this.setState({creature}) 
+    this.state.updated(creature)
   }
 
   updateCreature (keys, value) {
@@ -49,7 +56,7 @@ class TrackerCreature extends React.Component {
     }
 
     if (this.state.edit) {
-      edit = (<Editor properties={creature} onClose={this.save.bind(this)} />) 
+      edit = (<Editor editable={creature} onClose={this.save.bind(this)} />) 
     }
 
     const makeLabeled = ({value, label}) => (

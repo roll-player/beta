@@ -8,7 +8,7 @@ class Editor extends React.Component {
   constructor (props) {
     super(props)
     let { editable, onClose, title } = props
-    editable = Map.isMap(editable) ? editable : Immutable.Map(editable)
+    editable = Map.isMap(editable) ? editable : Map(editable)
     let original = editable
 
     this.state = { object: editable, original, title, onClose }

@@ -10,22 +10,38 @@ import CreatureManager from './creatureManager'
 class Tracker extends React.Component {
   constructor (props) {
     super(props)
-    this.state = { creatures: props.creatures || [] }
+    this.state = { creatures: props.creatures || Immutable.List([]) }
   }
 
   sort () {
     let { creatures } = this.state
+    const sorted = creatures.sort((a, b) => { 
+      const aValue = +a.get('initiative').get('value')
+      const bValue = +b.get('initiative').get('value')
+      console.log(bValue - aValue, a, b)
+      return bValue - aValue
+    })
 
-    creatures.sort((a, b) => b.initiative - a.initiative)
+    this.setState({creatures: sorted})
+  }
 
-    this.setState({creatures})
+  removeCreature (index) {
+    this.setState({creatures: this.state.creatures.remove(index)})
+  }
+
+  updateCreature (index, creature) {
+    this.setState({creatures: this.state.creatures.set(index, creature)})
   }
 
   render () {
-    const creatures = this.state.creatures.map(creature => (
-      <Row key={creature.id}>
+    const creatures = this.state.creatures.map((creature, index) => (
+      <Row key={`${index}_${creature.id}`}>
         <Col sm='1'>
-          <TrackerCreature creature={creature} remove={this.removeCreature.bind(this)} />
+          <TrackerCreature 
+            creature={creature} 
+            remove={this.removeCreature.bind(this, index)} 
+            updated={this.updateCreature.bind(this, index)}
+          />
         </Col>
       </Row>
     ))
@@ -35,9 +51,11 @@ class Tracker extends React.Component {
         <h1>Initiative Tracker</h1>
         <Row>
           <Col sm='1'>
-            <CreatureManager onSelected={creature => {
-              this.setState({creatures: [...this.state.creatures, creature]})
-            }} />
+            <CreatureManager 
+              onSelected={creature => {
+                this.setState({creatures: this.state.creatures.push(creature)})
+              }} 
+            />
           </Col>
         </Row>
         <Row>

@@ -67,17 +67,21 @@ const generateCreature = () => {
 
   return Immutable.fromJS(creature)
 }
-const CreatureCard = ({creature, edit, remove}) => {
+
+const CreatureCard = ({creature, edit, remove, onSelect}) => {
   return (
     <Card>
       <Row>
-        <Col sm='1/2'>
+        <Col sm='1/3'>
           <h1>{creature.get('name').get('value')}</h1>
         </Col>
-        <Col sm='1/4'>
+        <Col sm='1/6'>
+          <Button onClick={onSelect}>Select</Button>
+        </Col>
+        <Col sm='1/6'>
           <Button onClick={edit}>Edit</Button>
         </Col>
-        <Col sm='1/4'>
+        <Col sm='1/6'>
           <Button onClick={remove}>Remove</Button>
         </Col>
       </Row>
@@ -89,7 +93,7 @@ class CreatureManager extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = { creatures: Immutable.List([]), selected: Immutable.List([]), editing: -1 }
+    this.state = { creatures: Immutable.List([]), selected: Immutable.Set([]), editing: -1 }
   }
 
   removeCreature (index) {
@@ -104,11 +108,16 @@ class CreatureManager extends React.Component {
     this.setState({editing: -1, creatures: this.state.creatures.set(index, creature)})
   }
 
+  onSelect (index) {
+    this.setState({selected: this.state.selected.add(index)})
+    this.props.onSelected(this.state.creatures.get(index))
+  }
+
   render () {
     const creatures = this.state.creatures.map((creature, index) => (
       <Row key={creature.id} onDoubleClick={() => this.props.onSelected(creature)}>
         <Col>
-          <CreatureCard creature={creature} remove={this.removeCreature.bind(this, index)} edit={this.editCreature.bind(this, index)} />
+          <CreatureCard creature={creature} remove={this.removeCreature.bind(this, index)} edit={this.editCreature.bind(this, index)} onSelect={this.onSelect.bind(this, index)} />
         </Col>
       </Row>
     ))
