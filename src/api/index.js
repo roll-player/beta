@@ -42,7 +42,15 @@ const fuseOptions = {
 }
 
 const fused = new Fuse(mappedSpells, fuseOptions)
-const findSpell = (query, next) => next(null, fused.search(query))
+const exactFuse = new Fuse(mappedSpells, Object.assign({}, fuseOptions, { threshold: 0 }))
+
+const findSpell = (query, exact, next) => {
+  if(exact) {
+    return next(null, exactFuse.search(query))
+  }
+
+  return next(null, fused.search(query))
+}
 
 server.method('findSpell', findSpell , {
   cache: {
@@ -73,7 +81,10 @@ server.route({
   method: 'GET',
   path: '/spell/{query}',
   handler: (request, reply) => {
-    server.methods.findSpell(request.params.query, (err, result) => {
+    const { query } = request.params
+    const exact = request.query.exact == 'true' || false
+
+    server.methods.findSpell(query, exact, (err, result) => {
       if(err) {
         console.log(err)
         return reply(Boom.badRequest('Bad input'))

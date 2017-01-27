@@ -21,11 +21,11 @@ class Spell extends React.Component {
     super(props)
 
     this.state = { spells: [], fetching: true }
-    this.querySpell(this.props.params.query)
+    this.querySpell(`${this.props.params.query}${this.props.location.search}`)
   }
 
   componentWillReceiveProps (nextProps) {
-    this.querySpell(nextProps.params.query)
+    this.querySpell(`${nextProps.params.query}${nextProps.location.search}`)
   }
 
   querySpell (spellname) {
@@ -64,7 +64,7 @@ class Spell extends React.Component {
               {spellLevelNames[spell.level]} {spell.school}
             </div>
             <div styleName='spell--casting-time'>
-              {spell.castingTime}
+              {spell.casting_time}
             </div>
             <div styleName='spell--range'>
               {spell.range}
